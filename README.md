@@ -2,7 +2,7 @@
 
 Um gerenciador de links moderno e interativo estilo Linktree, projetado para compartilhar múltiplos links em uma única página.
 
-<img src="/imagens/logomarca.png" height="150px">
+<img src="/imagens/logomarca.png" height="250px">
 
 ## 🎨 Paleta de Cores
 
