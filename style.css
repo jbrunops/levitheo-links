@@ -5,7 +5,7 @@
     --bright-blue: #0aa7d4;
     --cream: #ffefcf;
 
-    --gradient-light: linear-gradient(180deg, #b4ffb8 0%, #4fcbcd 100%);
+    --gradient-light: linear-gradient(180deg, #0893BA 0%, #4fcbcd 100%);
     --gradient-dark: linear-gradient(135deg, #001e22, #003b44);
 
     --text-light: #333333;
@@ -14,10 +14,10 @@
     --shadow-light: 0 10px 30px rgba(0, 83, 94, 0.1);
     --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.2);
 
-    --bg-light: #f9f9f9;
+    --bg-light: #CEE7EC;
     --bg-dark: #121212;
 
-    --card-light: rgba(255, 255, 255, 0.95);
+    --card-light: #CEE7EC;
     --card-dark: rgba(30, 30, 30, 0.8);
 
     --transition-speed: 0.3s;
@@ -139,7 +139,7 @@ body.dark-mode {
 
 .hero-section {
     position: absolute;
-    top: -140px;
+    top: -130px;
     left: 0;
     width: 100%;
     z-index: 5;
@@ -277,12 +277,12 @@ body.animate-on-load .page-wrapper {
 }
 
 .consultant {
-    background-color: #fcce39;
+    background-color: #B9D95E;
     color: var(--text-light);
 }
 
 .whatsapp {
-    background-color: #4cd964;
+    background-color: #DCFFA3;
     color: var(--text-light);
 }
 
