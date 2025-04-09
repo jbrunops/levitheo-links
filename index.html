@@ -17,169 +17,163 @@
 
         <link rel="stylesheet" href="style.css" />
     </head>
-    <body class="light-mode">
-        <div class="theme-toggle">
-            <button id="theme-switch" aria-label="Alternar tema">
-                <i class="fas fa-moon"></i>
-            </button>
-        </div>
+    <body class="light-mode animate-on-load">
+        <div class="page-wrapper">
+            <div class="theme-toggle">
+                <button id="theme-switch" aria-label="Alternar tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
 
-        <div class="container">
-            <div class="profile">
-                <div class="profile-image">
+            <div class="content-wrapper">
+                <div class="hero-section">
                     <img
-                        src="/imagens/logomarca.png"
-                        alt="Logo Levitheo"
-                        class="logo"
+                        src="imagens/levitheo3d.png"
+                        alt="Levitheo 3D"
+                        class="hero-image"
                     />
                 </div>
-                <h1 class="title">Acesse todos os nossos conteúdos:</h1>
-            </div>
-
-            <div class="links-container">
-                <!-- Catálogo -->
-                <a
-                    href="https://vesti.co/levitheo/catalogo/e865e700dfca101"
-                    target="_blank"
-                    class="link-button catalog"
-                    data-category="catalog"
-                >
-                    <div class="icon-wrapper">
-                        <i class="fas fa-book"></i>
+                
+                <div class="container">
+                    <div class="logo-container">
+                        <img
+                            src="imagens/logomarca.png"
+                            alt="Logo Levitheo"
+                            class="logo"
+                        />
                     </div>
-                    <span>Catálogo Levitheo</span>
-                    <div class="link-arrow">
-                        <i class="fas fa-chevron-right"></i>
+                    
+                    <div class="links-container">
+                        <!-- Catálogo -->
+                        <a
+                            href="https://vesti.co/levitheo/catalogo/e865e700dfca101"
+                            target="_blank"
+                            class="link-button catalog"
+                            data-category="catalog"
+                        >
+                            <div class="icon-wrapper">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <span>Catálogo Levitheo</span>
+                            <div class="link-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </a>
+    
+                        <!-- Consultoras -->
+                        <a
+                            href="https://whatsa.me/5581994253026"
+                            target="_blank"
+                            class="link-button consultant"
+                            data-category="consultant"
+                        >
+                            <div class="icon-wrapper">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <span>Consultora Luziene</span>
+                            <div class="link-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </a>
+                        <a
+                            href="https://whatsa.me/5581993243843"
+                            target="_blank"
+                            class="link-button consultant"
+                            data-category="consultant"
+                        >
+                            <div class="icon-wrapper">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <span>Consultora Aline</span>
+                            <div class="link-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </a>
+    
+                        <!-- Grupos WhatsApp -->
+                        <a
+                            href="https://chat.whatsapp.com/K1z5pvdYRtWKxTb4Xgef6b"
+                            target="_blank"
+                            class="link-button whatsapp"
+                            data-category="whatsapp"
+                        >
+                            <div class="icon-wrapper">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <span>Grupo WhatsApp 1</span>
+                            <div class="link-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </a>
+                        <a
+                            href="https://chat.whatsapp.com/Fzh1L57StWO2SV19hLR8Nd"
+                            target="_blank"
+                            class="link-button whatsapp"
+                            data-category="whatsapp"
+                        >
+                            <div class="icon-wrapper">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <span>Grupo WhatsApp 2</span>
+                            <div class="link-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </a>
+                        <a
+                            href="https://chat.whatsapp.com/LTyIzio07MGAMbPjq5Zt1K"
+                            target="_blank"
+                            class="link-button whatsapp"
+                            data-category="whatsapp"
+                        >
+                            <div class="icon-wrapper">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <span>Grupo WhatsApp 3</span>
+                            <div class="link-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </a>
+                        <a
+                            href="https://chat.whatsapp.com/IrLOMEn6esFGDwEe9OJfVt"
+                            target="_blank"
+                            class="link-button whatsapp"
+                            data-category="whatsapp"
+                        >
+                            <div class="icon-wrapper">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <span>Grupo WhatsApp 4</span>
+                            <div class="link-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </a>
+    
+                        <!-- Facebook -->
+                        <a
+                            href="https://www.facebook.com/uselevitheo"
+                            target="_blank"
+                            class="link-button facebook"
+                            data-category="facebook"
+                        >
+                            <div class="icon-wrapper">
+                                <i class="fab fa-facebook-f"></i>
+                            </div>
+                            <span>Facebook</span>
+                            <div class="link-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </a>
                     </div>
-                </a>
-
-                <!-- Consultoras -->
-                <!-- <a
-                    href="#"
-                    class="link-button consultant"
-                    data-category="consultant"
-                >
-                    <div class="icon-wrapper">
-                        <i class="fas fa-user-tie"></i>
+    
+                    <div class="footer">
+                        <p>
+                            Desenvolvido por
+                            <a href="https://instagram.com/jbrunops/" target="_blank"
+                                >Jackson Porciúncula</a
+                            >
+                        </p>
                     </div>
-                    <span>Consultora 1</span>
-                    <div class="link-arrow">
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
-                </a> -->
-                <a
-                    href="https://whatsa.me/5581994253026"
-                    target="_blank"
-                    class="link-button consultant"
-                    data-category="consultant"
-                >
-                    <div class="icon-wrapper">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <span>Consultora Luziene</span>
-                    <div class="link-arrow">
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
-                </a>
-                <a
-                    href="https://whatsa.me/5581993243843"
-                    target="_blank"
-                    class="link-button consultant"
-                    data-category="consultant"
-                >
-                    <div class="icon-wrapper">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <span>Consultora Aline</span>
-                    <div class="link-arrow">
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
-                </a>
-
-                <!-- Grupos WhatsApp -->
-                <a
-                    href="https://chat.whatsapp.com/K1z5pvdYRtWKxTb4Xgef6b"
-                    target="_blank"
-                    class="link-button whatsapp"
-                    data-category="whatsapp"
-                >
-                    <div class="icon-wrapper">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <span>Grupo do WhatsApp 1</span>
-                    <div class="link-arrow">
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
-                </a>
-                <a
-                    href="https://chat.whatsapp.com/Fzh1L57StWO2SV19hLR8Nd"
-                    target="_blank"
-                    class="link-button whatsapp"
-                    data-category="whatsapp"
-                >
-                    <div class="icon-wrapper">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <span>Grupo do WhatsApp 2</span>
-                    <div class="link-arrow">
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
-                </a>
-                <a
-                    href="https://chat.whatsapp.com/LTyIzio07MGAMbPjq5Zt1K"
-                    target="_blank"
-                    class="link-button whatsapp"
-                    data-category="whatsapp"
-                >
-                    <div class="icon-wrapper">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <span>Grupo do WhatsApp 3</span>
-                    <div class="link-arrow">
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
-                </a>
-                <a
-                    href="https://chat.whatsapp.com/IrLOMEn6esFGDwEe9OJfVt"
-                    target="_blank"
-                    class="link-button whatsapp"
-                    data-category="whatsapp"
-                >
-                    <div class="icon-wrapper">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <span>Grupo do WhatsApp 4</span>
-                    <div class="link-arrow">
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
-                </a>
-
-                <!-- Redes Sociais -->
-                <div class="social-row">
-                    <a
-                        href="https://www.facebook.com/uselevitheo"
-                        target="_blank"
-                        class="social-button facebook"
-                    >
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a
-                        href="https://www.instagram.com/uselevitheo/"
-                        target="_blank"
-                        class="social-button instagram"
-                    >
-                        <i class="fab fa-instagram"></i>
-                    </a>
                 </div>
-            </div>
-
-            <div class="footer">
-                <p>
-                    Desenvolvido por
-                    <a href="https://instagram.com/jbrunops/" target="_blank"
-                        >Jackson Porciúncula</a
-                    >
-                </p>
             </div>
         </div>
 
