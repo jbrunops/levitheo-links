@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Levitheo - Administração</title>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .admin-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .login-form {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .login-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+        }
+        
+        .admin-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .admin-btn:hover {
+            background-color: var(--primary-hover);
+        }
+        
+        .admin-panel {
+            display: none;
+        }
+        
+        .admin-panel h2 {
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+        
+        .link-management {
+            margin-top: 30px;
+        }
+        
+        .link-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+            flex-wrap: wrap;
+        }
+        
+        .link-item:hover {
+            transform: translateY(-2px);
+        }
+        
+        .link-details {
+            flex-grow: 1;
+            margin-left: 15px;
+        }
+        
+        .link-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+        
+        .link-url {
+            font-size: 0.9em;
+            color: var(--secondary-text);
+            word-break: break-all;
+        }
+        
+        .link-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .link-btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .edit-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .move-up-btn,
+        .move-down-btn {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .link-btn.disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        
+        .add-link-form {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .form-row select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+        }
+        
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        
+        .back-btn:hover {
+            background-color: var(--secondary-hover);
+        }
+        
+        .error-message {
+            color: #f44336;
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .icon-selector {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .icon-selector select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            padding: 10px;
+            color: var(--text-color);
+            flex-grow: 1;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23777777%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px top 50%;
+            background-size: 12px auto;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+        
+        .icon-selector select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        
+        .dark-mode .icon-selector select {
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23bbbbbb%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+        }
+        
+        .icon-preview {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            margin-left: 15px;
+            background-color: var(--primary-color);
+            border-radius: 5px;
+            color: white;
+        }
+        
+        .icon-preview i {
+            font-size: 24px;
+        }
+        
+        .change-password-form {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .change-password-form h3 {
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+        
+        .message {
+            margin-top: 10px;
+            padding: 8px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Estilos responsivos para mobile */
+        @media screen and (max-width: 768px) {
+            .link-item {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 15px 10px;
+            }
+            
+            .link-main-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 10px;
+            }
+            
+            .icon-wrapper {
+                align-self: center;
+                margin-bottom: 10px;
+                width: 50px;
+                height: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: var(--primary-color);
+                border-radius: 50%;
+                color: white;
+            }
+            
+            .icon-wrapper i {
+                font-size: 20px;
+            }
+            
+            .link-details {
+                margin-left: 0;
+                text-align: center;
+                width: 100%;
+            }
+            
+            .link-actions {
+                justify-content: center;
+                flex-wrap: wrap;
+                margin-top: 15px;
+                width: 100%;
+                padding-top: 10px;
+                border-top: 1px solid var(--border-color);
+            }
+            
+            .link-btn {
+                flex: 1;
+                min-width: 60px;
+                max-width: 80px;
+                padding: 10px 8px;
+                font-size: 14px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0 2px;
+            }
+            
+            .admin-container {
+                padding: 10px;
+                max-width: 100%;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .icon-selector {
+                flex-direction: column;
+            }
+            
+            .icon-preview {
+                margin-left: 0;
+                margin-top: 10px;
+                align-self: center;
+                width: 60px;
+                height: 60px;
+            }
+            
+            .add-link-form, 
+            .change-password-form {
+                padding: 15px 10px;
+            }
+            
+            .admin-btn {
+                padding: 14px;
+                font-size: 16px;
+            }
+            
+            h2, h3 {
+                font-size: 1.2rem;
+                text-align: center;
+            }
+            
+            .back-btn {
+                display: block;
+                text-align: center;
+                margin: 20px auto;
+            }
+            
+            .login-form {
+                width: 90%;
+                max-width: 350px;
+                margin: 30px auto;
+            }
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <div class="theme-toggle">
+        <button id="theme-switch" aria-label="Alternar tema">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <div class="admin-container">
+        <div class="login-form" id="login-form">
+            <h2>Acesso Administrativo</h2>
+            <div class="form-group">
+                <label for="username">Usuário</label>
+                <input type="text" id="username" placeholder="Digite seu usuário">
+            </div>
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" placeholder="Digite sua senha">
+            </div>
+            <button class="admin-btn" id="login-button">Entrar</button>
+            <p class="error-message" id="login-error"></p>
+            <a href="index.html" class="back-btn" style="display: block; text-align: center; margin-top: 20px;">Voltar para o site</a>
+        </div>
+
+        <div class="admin-panel" id="admin-panel">
+            <h2>Gerenciamento de Links</h2>
+            
+            <div class="add-link-form">
+                <h3>Adicionar Novo Link</h3>
+                <div class="form-group">
+                    <label for="link-title">Título</label>
+                    <input type="text" id="link-title" placeholder="Nome do link">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="link-url">URL</label>
+                        <input type="text" id="link-url" placeholder="https://...">
+                    </div>
+                    <div class="form-group">
+                        <label for="link-category">Categoria</label>
+                        <select id="link-category">
+                            <option value="catalog">Catálogo</option>
+                            <option value="consultant">Consultora</option>
+                            <option value="whatsapp">WhatsApp</option>
+                            <option value="facebook">Facebook</option>
+                            <option value="instagram">Instagram</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="link-icon">Ícone</label>
+                    <div class="icon-selector">
+                        <select id="link-icon">
+                            <option value="fas fa-book">📚 Livro/Catálogo (fas fa-book)</option>
+                            <option value="fas fa-user-tie">👤 Consultor (fas fa-user-tie)</option>
+                            <option value="fab fa-whatsapp">💬 WhatsApp (fab fa-whatsapp)</option>
+                            <option value="fab fa-facebook-f">📘 Facebook (fab fa-facebook-f)</option>
+                            <option value="fab fa-instagram">📷 Instagram (fab fa-instagram)</option>
+                            <option value="fas fa-shopping-cart">🛒 Carrinho (fas fa-shopping-cart)</option>
+                            <option value="fas fa-store">🏪 Loja (fas fa-store)</option>
+                            <option value="fas fa-phone">📞 Telefone (fas fa-phone)</option>
+                            <option value="fas fa-envelope">✉️ Email (fas fa-envelope)</option>
+                            <option value="fas fa-map-marker-alt">📍 Localização (fas fa-map-marker-alt)</option>
+                            <option value="fas fa-link">🔗 Link Genérico (fas fa-link)</option>
+                        </select>
+                        <div class="icon-preview">
+                            <i class="fas fa-book"></i>
+                        </div>
+                    </div>
+                </div>
+                <button class="admin-btn" id="add-link-button">Adicionar Link</button>
+            </div>
+            
+            <div class="link-management" id="links-list">
+                <!-- Links serão carregados aqui dinamicamente -->
+            </div>
+            
+            <div class="change-password-form">
+                <h3>Alterar Senha</h3>
+                <div class="form-group">
+                    <label for="current-password">Senha Atual</label>
+                    <input type="password" id="current-password" placeholder="Digite sua senha atual">
+                </div>
+                <div class="form-group">
+                    <label for="new-password">Nova Senha</label>
+                    <input type="password" id="new-password" placeholder="Digite a nova senha">
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirmar Nova Senha</label>
+                    <input type="password" id="confirm-password" placeholder="Confirme a nova senha">
+                </div>
+                <button class="admin-btn" id="change-password-button">Alterar Senha</button>
+                <p class="message" id="password-message"></p>
+            </div>
+            
+            <a href="index.html" class="back-btn">Voltar para o site</a>
+            <button class="admin-btn" id="logout-button" style="margin-top: 20px;">Sair</button>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html> 

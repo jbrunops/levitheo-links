@@ -2,10 +2,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Seleção de elementos
     const themeSwitch = document.getElementById("theme-switch");
     const body = document.body;
-    const allLinks = document.querySelectorAll(".link-button");
     const container = document.querySelector(".container");
     const heroImage = document.querySelector(".hero-image");
     const heroSection = document.querySelector(".hero-section");
+    const linksContainer = document.querySelector(".links-container");
 
     // Definir classe para controlar animações
     document.body.classList.add("animations-ready");
@@ -55,23 +55,8 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("theme", "light");
     }
 
-    // Adicionar efeitos de clique aos links
-    allLinks.forEach((link) => {
-        link.addEventListener("click", function (e) {
-            // Animação de clique
-            this.classList.add("clicked");
-
-            // Registrar cliques (poderia ser usado para analytics)
-            const category = this.getAttribute("data-category");
-            const text = this.querySelector("span").textContent;
-            console.log(`Link clicked: ${category} - ${text}`);
-
-            // Remover classe após animação
-            setTimeout(() => {
-                this.classList.remove("clicked");
-            }, 300);
-        });
-    });
+    // Carregar links dinamicamente
+    loadLinks();
 
     // Adicionar interatividade ao hover dos bonecos
     if (heroImage) {
@@ -112,6 +97,141 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // Função para carregar links do localStorage
+    function loadLinks() {
+        // Limpar contêiner de links
+        linksContainer.innerHTML = "";
+        
+        // Obter links do localStorage ou usar padrão
+        const links = getLinksFromStorage();
+        
+        // Adicionar links ao contêiner
+        links.forEach(link => {
+            const linkElement = createLinkElement(link);
+            linksContainer.appendChild(linkElement);
+        });
+        
+        // Adicionar eventos de clique aos links
+        addLinkClickEvents();
+        
+        // Animação de entrada
+        animateEntrance();
+    }
+    
+    // Obter links do localStorage
+    function getLinksFromStorage() {
+        const linksJSON = localStorage.getItem("siteLinks");
+        return linksJSON ? JSON.parse(linksJSON) : getDefaultLinks();
+    }
+    
+    // Retornar links padrão baseados no HTML original
+    function getDefaultLinks() {
+        // Links padrão com base no index.html original
+        return [
+            {
+                title: "Catálogo Levitheo",
+                url: "https://vesti.co/levitheo/catalogo/e865e700dfca101",
+                category: "catalog",
+                icon: "fas fa-book"
+            },
+            {
+                title: "Consultora Luziene",
+                url: "https://whatsa.me/5581994253026",
+                category: "consultant",
+                icon: "fas fa-user-tie"
+            },
+            {
+                title: "Consultora Aline",
+                url: "https://whatsa.me/5581993243843",
+                category: "consultant",
+                icon: "fas fa-user-tie"
+            },
+            {
+                title: "Grupo WhatsApp 1",
+                url: "https://chat.whatsapp.com/K1z5pvdYRtWKxTb4Xgef6b",
+                category: "whatsapp",
+                icon: "fab fa-whatsapp"
+            },
+            {
+                title: "Grupo WhatsApp 2",
+                url: "https://chat.whatsapp.com/Fzh1L57StWO2SV19hLR8Nd",
+                category: "whatsapp",
+                icon: "fab fa-whatsapp"
+            },
+            {
+                title: "Grupo WhatsApp 3",
+                url: "https://chat.whatsapp.com/LTyIzio07MGAMbPjq5Zt1K",
+                category: "whatsapp",
+                icon: "fab fa-whatsapp"
+            },
+            {
+                title: "Grupo WhatsApp 4",
+                url: "https://chat.whatsapp.com/IrLOMEn6esFGDwEe9OJfVt",
+                category: "whatsapp",
+                icon: "fab fa-whatsapp"
+            },
+            {
+                title: "Facebook",
+                url: "https://www.facebook.com/uselevitheo",
+                category: "facebook",
+                icon: "fab fa-facebook-f"
+            }
+        ];
+    }
+    
+    // Criar elemento de link HTML
+    function createLinkElement(link) {
+        // Criar elemento <a>
+        const linkElement = document.createElement("a");
+        linkElement.href = link.url;
+        linkElement.target = "_blank";
+        linkElement.className = `link-button ${link.category}`;
+        linkElement.setAttribute("data-category", link.category);
+        
+        // Adicionar ícone
+        const iconWrapper = document.createElement("div");
+        iconWrapper.className = "icon-wrapper";
+        iconWrapper.innerHTML = `<i class="${link.icon}"></i>`;
+        
+        // Adicionar título
+        const span = document.createElement("span");
+        span.textContent = link.title;
+        
+        // Adicionar seta
+        const linkArrow = document.createElement("div");
+        linkArrow.className = "link-arrow";
+        linkArrow.innerHTML = '<i class="fas fa-chevron-right"></i>';
+        
+        // Montar elemento completo
+        linkElement.appendChild(iconWrapper);
+        linkElement.appendChild(span);
+        linkElement.appendChild(linkArrow);
+        
+        return linkElement;
+    }
+    
+    // Adicionar eventos de clique aos links
+    function addLinkClickEvents() {
+        const allLinks = document.querySelectorAll(".link-button");
+        
+        allLinks.forEach((link) => {
+            link.addEventListener("click", function (e) {
+                // Animação de clique
+                this.classList.add("clicked");
+    
+                // Registrar cliques (poderia ser usado para analytics)
+                const category = this.getAttribute("data-category");
+                const text = this.querySelector("span").textContent;
+                console.log(`Link clicked: ${category} - ${text}`);
+    
+                // Remover classe após animação
+                setTimeout(() => {
+                    this.classList.remove("clicked");
+                }, 300);
+            });
+        });
+    }
+
     // Animação de entrada
     function animateEntrance() {
         const links = document.querySelectorAll(".link-button, .social-button");
@@ -126,7 +246,4 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 100 * index);
         });
     }
-
-    // Executar animação de entrada
-    animateEntrance();
 });
